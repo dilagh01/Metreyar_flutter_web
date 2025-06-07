@@ -35,6 +35,3 @@ jobs:
         with:
           name: web-build
           path: build/web
-environment:
-  sdk: "..."
-  flutter: "..."
