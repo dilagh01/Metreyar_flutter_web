@@ -1,4 +1,4 @@
-FROM cirrusci/flutter:3.22.2
+FROM cirrusci/flutter:3.19.6
 
 WORKDIR /app
 COPY . .
@@ -6,4 +6,4 @@ COPY . .
 RUN flutter pub get
 RUN flutter build web
 
-CMD ["bash"]
+CMD ["flutter", "serve", "--web-port", "8080"]
