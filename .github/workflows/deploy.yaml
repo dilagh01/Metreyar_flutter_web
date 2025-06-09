@@ -3,26 +3,33 @@ name: Deploy Flutter Web to GitHub Pages
 on:
   push:
     branches:
-      - main  # یا اگر شاخه‌ات "master" است، آن را جایگزین کن
+      - main  # اگر شاخه اصلیت اسم دیگری است، اینجا عوض کن
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Set up Flutter
+      - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.22.1'  # مطمئن شو با نسخه پروژه‌ات هماهنگ است
+          flutter-version: "3.19.5"
 
-      - name: Install dependencies
+      - name: Enable Web
+        run: flutter config --enable-web
+
+      - name: Get Dependencies
         run: flutter pub get
 
       - name: Build Flutter Web
-        run: flutter build web --web-renderer html --no-tree-shake-icons
+        run: flutter build web --base-href="/"
+
+      - name: Add CNAME file
+        run: |
+          echo "homkar.ir" > build/web/CNAME
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
