@@ -1,4 +1,4 @@
-FROM ghcr.io/cirruslabs/flutter:3.22.0
+FROM cirrusci/flutter:latest
 
 WORKDIR /app
 COPY . .
@@ -6,4 +6,4 @@ COPY . .
 RUN flutter pub get
 RUN flutter build web
 
-CMD ["flutter", "serve", "--web-port", "8080"]
+CMD ["python3", "-m", "http.server", "--directory", "build/web", "8080"]

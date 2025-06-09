@@ -1,11 +1,8 @@
 services:
   - type: web
-    name: metreyar_flutter_web
-    env: official
-    buildCommand: flutter build web --release
-    startCommand: >
-      mkdir -p site && cp -r build/web/* site &&
-      serve -s site -l 8080
-    publish:
-      type: static
-      dir: build/web
+    name: metreyar-flutter-web
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    buildCommand: ""
+    startCommand: ""
