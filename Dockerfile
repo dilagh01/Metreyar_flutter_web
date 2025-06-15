@@ -1,34 +1,28 @@
-# مرحله اول: استفاده از ایمیج رسمی Flutter برای build پروژه
-FROM cirrusci/flutter:stable AS build
+# مرحله اول: استفاده از ایمیج رسمی Flutter برای بیلد
+FROM cirrusci/flutter:latest AS builder
 
-# به‌روزرسانی Flutter و فعال‌سازی پشتیبانی از Web
-RUN flutter channel stable
-RUN flutter upgrade
-RUN flutter config --enable-web
-
-# تنظیم دایرکتوری کاری داخل کانتینر
+# مسیر کاری داخل کانتینر
 WORKDIR /app
 
-# کپی کردن فایل‌های پروژه به داخل کانتینر
+# کپی کل پروژه به داخل کانتینر
 COPY . .
 
-# گرفتن پکیج‌های مورد نیاز پروژه
+# نصب پکیج‌های مورد نیاز پروژه
 RUN flutter pub get
 
-# ساخت (بیلد) نسخه‌ی web پروژه
+# بیلد نسخه وب از پروژه فلاتر
 RUN flutter build web
 
-# مرحله دوم: استفاده از nginx برای سرویس‌دهی فایل‌های ساخته‌شده
+# مرحله دوم: استفاده از Nginx برای سرو کردن پروژه
 FROM nginx:alpine
 
-# پاک کردن فایل‌های پیش‌فرض nginx
+# پاک کردن محتوای پیش‌فرض Nginx
 RUN rm -rf /usr/share/nginx/html/*
 
-# کپی فایل‌های بیلد شده به پوشه‌ی nginx
-COPY --from=build /app/build/web /usr/share/nginx/html
+# کپی خروجی build شده Flutter Web به پوشه public سرور
+COPY --from=builder /app/build/web /usr/share/nginx/html
 
-# باز کردن پورت 80 برای دسترسی
+# اکسپوز کردن پورت 80 (پورت پیش‌فرض HTTP)
 EXPOSE 80
 
-# اجرای nginx
-CMD ["nginx", "-g", "daemon off;"]
+# اجرای Nginx (دستور پیش‌فرض ایمیج nginx فعال است)
