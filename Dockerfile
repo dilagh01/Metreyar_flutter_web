@@ -3,7 +3,6 @@ FROM cirrusci/flutter:latest
 WORKDIR /app
 COPY . .
 
-RUN flutter channel stable
 RUN flutter upgrade
 RUN flutter config --enable-web
 RUN flutter build web
