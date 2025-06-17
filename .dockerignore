@@ -1,4 +1,20 @@
-build/
-.dart_tool/
+# پوشه‌های کش‌شده و غیرضروری
+build
+.dart_tool
 .packages
-.pub-cache/
+.pub-cache
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# پوشه‌های مربوط به IDE
+.idea
+.vscode
+
+# فایل‌های Git
+.git
+.gitignore
+
+# خروجی‌های دیگر
+*.iml
+*.lock
+*.log

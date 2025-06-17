@@ -1,21 +1,12 @@
-# مرحله Build با نسخه مشخص Flutter
-FROM cirrusci/flutter:3.22.1 AS builder
+# مرحله build
+FROM ghcr.io/cirruslabs/flutter:3.19.6 AS build
 
 WORKDIR /app
 COPY . .
 
-# گرفتن بسته‌ها و بیلد وب
 RUN flutter pub get
-RUN flutter build web --release
+RUN flutter build web
 
-# مرحله Serve با Nginx
+# مرحله سرو کردن وب‌اپ
 FROM nginx:alpine
-
-# پاک کردن محتوای پیش‌فرض
-RUN rm -rf /usr/share/nginx/html/*
-
-# کپی خروجی پروژه ساخته‌شده
-COPY --from=builder /app/build/web /usr/share/nginx/html
-
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+COPY --from=build /app/build/web /usr/share/nginx/html
