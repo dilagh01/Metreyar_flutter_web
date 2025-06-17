@@ -1,11 +1,23 @@
-
+# مرحله اول: ساخت پروژه Flutter Web
 FROM cirrusci/flutter:stable AS build
-WORKDIR /app
+
+# تنظیم دایرکتوری کاری روی پوشه اصلی پروژه
+WORKDIR /app/index
+
+# کپی کردن همه فایل‌ها
 COPY . .
+
+# فعال‌سازی پشتیبانی از Flutter Web
 RUN flutter config --enable-web
+
+# دریافت پکیج‌ها
+RUN flutter pub get
+
+# بیلد پروژه برای وب
 RUN flutter build web
 
+# مرحله دوم: استفاده از Nginx برای سروینگ فایل‌های بیلد شده
 FROM nginx:alpine
-COPY --from=build /app/build/web /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+
+# کپی خروجی build به Nginx
+COPY --from=build /app/index/build/web /usr/share/nginx/html

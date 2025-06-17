@@ -1,22 +1,24 @@
-name: Build and Deploy Flutter Web
+name: Flutter Web Build
 
 on:
   push:
-    branches:
-      - main  # یا اسم برنچی که استفاده می‌کنی
+    branches: [ index ]
+    paths:
+      - '**.dart'
+      - 'pubspec.yaml'
+      - 'Dockerfile'
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
+      - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Set up Flutter
+      - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.19.6'  # نسخه‌ای که استفاده می‌کنی
+          flutter-version: '3.19.6'
 
       - name: Install dependencies
         run: flutter pub get
@@ -24,8 +26,8 @@ jobs:
       - name: Build Flutter Web
         run: flutter build web
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Upload build
+        uses: actions/upload-artifact@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: build/web
+          name: flutter_web_build
+          path: build/web
