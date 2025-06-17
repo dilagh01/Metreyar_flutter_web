@@ -11,9 +11,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Metreyar Web',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
       home: Scaffold(
         appBar: AppBar(title: const Text('Metreyar Web')),
-        body: const Center(child: Text('Hello from Flutter Web!')),
+        body: const Center(child: Text('Hello from Flutter Web')),
       ),
     );
   }
