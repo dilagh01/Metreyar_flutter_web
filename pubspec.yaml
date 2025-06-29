@@ -1,0 +1,43 @@
+<<<<<<< HEAD
+# مرحله Build با نسخه مشخص Flutter
+FROM cirrusci/flutter:3.22.1 AS builder
+
+WORKDIR /app
+COPY . .
+
+# گرفتن بسته‌ها و بیلد وب
+RUN flutter pub get
+RUN flutter build web --release
+
+# مرحله Serve با Nginx
+FROM nginx:alpine
+=======
+name: metreyar_flutter_web
+description: "A new Flutter project."
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.2.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+>>>>>>> a8948b1
+
+# پاک کردن محتوای پیش‌فرض
+RUN rm -rf /usr/share/nginx/html/*
+
+<<<<<<< HEAD
+# کپی خروجی پروژه ساخته‌شده
+COPY --from=builder /app/build/web /usr/share/nginx/html
+
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
+=======
+flutter:
+  uses-material-design: true
+>>>>>>> a8948b1
