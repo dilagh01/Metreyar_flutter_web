@@ -1,14 +1,33 @@
-name: Deploy to Render
+name: Deploy to Cloudflare
 
 on:
   push:
     branches:
-      - main
+      - main  # هر زمانی که تغییرات در شاخه اصلی پوش داده شد
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    
     steps:
-      - name: Trigger Render Webhook
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'  # نسخه Node.js که در پروژه استفاده می‌کنید
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build the project
+        run: npm run build  # یا دستوری که برای Build پروژه فلاتر استفاده می‌کنید
+
+      - name: Deploy to Cloudflare
         run: |
-          curl -X POST "https://api.render.com/deploy/srv-d1gdbc6mcj7s73cksqkg?key=OVyGAN17Fgw"
+          curl -X POST "https://api.cloudflare.com/client/v4/zones/YOUR_ZONE_ID/purge_cache" \
+          -H "X-Auth-Email: YOUR_EMAIL" \
+          -H "X-Auth-Key: YOUR_API_KEY" \
+          -H "Content-Type: application/json" \
+          --data '{"purge_everything":true}'
