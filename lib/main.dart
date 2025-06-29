@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'pages/file_upload_page.dart'; // اضافه کردن مسیر صفحه آپلود
+import 'pages/file_upload_page.dart';  // وارد کردن صفحه آپلود فایل
+import 'pages/meter_calculation_page.dart'; // وارد کردن صفحه محاسبات متره
 
 void main() {
   runApp(const MyApp());
@@ -40,6 +41,16 @@ class HomePage extends StatelessWidget {
                 );
               },
               child: const Text('ورود به آپلود فایل'),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MeterCalculationPage()),
+                );
+              },
+              child: const Text('ورود به فرم محاسبات متره'),
             ),
           ],
         ),
