@@ -32,7 +32,7 @@ const RESOURCES = {"canvaskit/skwasm.wasm": "4051bfc27ba29bf420d17aa0c3a98bce",
 "icons/Icon-maskable-192.png": "c457ef57daa1d16f64b27b786ec2ea3c",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-maskable-512.png": "301a7604d45b3e739efc881eb04896ea",
-"flutter_bootstrap.js": "fff1688688877e6ae214e4f21647db6c",
+"flutter_bootstrap.js": "c8579c9889b2de5d2e2803cac679b1e2",
 "version.json": "ba8c11e120b22fa6d2c8117d990424aa"};
 // The application shell files that are downloaded before a service worker can
 // start.
