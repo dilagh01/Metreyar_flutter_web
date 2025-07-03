@@ -28,3 +28,5 @@ jobs:
         with:
           name: flutter-web-build
           path: build/web
+- name: 🏗️ Build Web App
+  run: flutter build web --base-href="/Metreyar_flutter_web/" --dart-define=BACKEND_URL=https://metreyar-api.onrender.com
