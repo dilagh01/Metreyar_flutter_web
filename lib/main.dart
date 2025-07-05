@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'app.dart'; // یا هر فایل دیگه‌ای که اپت رو از اونجا شروع می‌کنی
+import 'app.dart';
 
 void main() {
   runApp(const MyApp());
