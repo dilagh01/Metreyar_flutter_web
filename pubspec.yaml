@@ -1,40 +1,25 @@
-import 'dart:convert';
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+name: metreyar_flutter_web
+description: A new Flutter web project.
+publish_to: 'none'
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+version: 1.0.0+1
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(title: const Text('Metreyar Front')),
-        body: Center(
-          child: FutureBuilder<String>(
-            future: fetchHello(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const CircularProgressIndicator();
-              } else if (snapshot.hasError) {
-                return Text('Error: ${snapshot.error}');
-              } else {
-                return Text('API: ${snapshot.data}');
-              }
-            },
-          ),
-        ),
-      ),
-    );
-  }
-}
+environment:
+  sdk: ">=3.3.0 <4.0.0"
 
-Future<String> fetchHello() async {
-  final response = await http.get(Uri.parse('https://api.homkar.ir/api/hello'));
-  if (response.statusCode == 200) {
-    return jsonDecode(response.body)['message'];
-  } else {
-    throw Exception('Failed to fetch hello');
-  }
-}
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^0.13.6
+
+  # برای Flutter Web نیازی به cupertino_icons نیست، ولی اگه خواستی می‌تونی بذاری
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
