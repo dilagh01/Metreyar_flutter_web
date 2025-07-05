@@ -1,30 +1,20 @@
 name: metreyar_flutter_web
-description: A web interface for Metreyar calculation
-publish_to: 'none' # this is a private project, not published to pub.dev
+description: A new Flutter web project.
+
+publish_to: 'none' 
+version: 1.0.0+1
 
 environment:
   sdk: ">=3.3.0 <4.0.0"
-  flutter: ">=3.22.1"
 
 dependencies:
   flutter:
     sdk: flutter
-
-  cupertino_icons: ^1.0.2
-  flutter_web_plugins:
-    sdk: flutter
   http: ^0.13.6
-  provider: ^6.1.2
-  shared_preferences: ^2.2.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.1
 
 flutter:
   uses-material-design: true
-dependencies:
-  flutter:
-    sdk: flutter
-  http: ^0.13.6
