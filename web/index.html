@@ -4,48 +4,49 @@
     <meta charset="UTF-8" />
     <meta content="IE=Edge" http-equiv="X-UA-Compatible" />
     <meta name="description" content="Metreyar Flutter Web App" />
-
+    
     <!-- iOS meta tags & icons -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <meta name="apple-mobile-web-app-title" content="metreyar_flutter_web" />
+    <meta name="apple-mobile-web-app-title" content="Metreyar" />
     <link rel="apple-touch-icon" href="icons/Icon-192.png" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="favicon.png" />
 
-    <title>Metreyar</title>
+    <!-- Manifest -->
     <link rel="manifest" href="manifest.json" />
+
+    <title>Metreyar</title>
+
+    <!-- GitHub Pages base href -->
+    <base href="$FLUTTER_BASE_HREF" />
   </head>
-<base href="$FLUTTER_BASE_HREF">
+
   <body>
     <script>
-      // This script prevents iOS from zooming in on input fields
-      document.addEventListener('touchstart', function () {}, true);
+      // جلوگیری از زوم در iOS هنگام لمس
+      document.addEventListener('touchstart', function (event) {
+        if (event.touches.length > 1) {
+          event.preventDefault();
+        }
+      }, { passive: false });
     </script>
 
-    <!-- Load Flutter main script -->
+    <!-- Flutter JS -->
     <script src="flutter.js" defer></script>
+
     <script>
       window.addEventListener('load', function (ev) {
         _flutter.loader.loadEntrypoint({
-          serviceWorker: {
-            serviceWorkerVersion: 'v1',
-          },
-          onEntrypointLoaded: function (engineInitializer) {
-            engineInitializer.initializeEngine().then(function (appRunner) {
+          entrypointUrl: "main.dart.js",
+          onEntrypointLoaded: function(engineInitializer) {
+            engineInitializer.initializeEngine().then(function(appRunner) {
               appRunner.runApp();
             });
-          },
+          }
         });
       });
-    </script>
-
-    <!-- ✅ vConsole for mobile debugging -->
-    <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
-    <script>
-      var vConsole = new VConsole();
-      console.log('vConsole is ready for debugging.');
     </script>
   </body>
 </html>
