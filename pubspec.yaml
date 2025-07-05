@@ -1,20 +1,41 @@
-name: metreyar_flutter_web
-description: A new Flutter web project.
+import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
-publish_to: 'none' 
-version: 1.0.0+1
+Future<String> fetchHello() async {
+  final response = await http.get(Uri.parse('https://metreyar.api.onrender.com/api/hello'));
+  if (response.statusCode == 200) {
+    return jsonDecode(response.body)['message'];
+  } else {
+    throw Exception('Failed to load data');
+  }
+}
 
-environment:
-  sdk: ">=3.3.0 <4.0.0"
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
-dependencies:
-  flutter:
-    sdk: flutter
-  http: ^0.13.6
-
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
-
-flutter:
-  uses-material-design: true
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Metreyar',
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(title: const Text('Metreyar Frontend')),
+        body: Center(
+          child: FutureBuilder<String>(
+            future: fetchHello(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const CircularProgressIndicator();
+              } else if (snapshot.hasError) {
+                return Text('Error: ${snapshot.error}');
+              } else {
+                return Text('API response: ${snapshot.data}');
+              }
+            },
+          ),
+        ),
+      ),
+    );
+  }
+}
