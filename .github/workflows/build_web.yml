@@ -1,4 +1,4 @@
-name: Build Flutter Web
+name: Build and Deploy Flutter Web to GitHub Pages
 
 on:
   push:
@@ -10,23 +10,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.22.1'  # یا نسخه‌ای که در پروژه استفاده می‌کنی
+          flutter-version: '3.22.1'
 
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Build web
-        run: flutter build web --web-renderer html --no-tree-shake-icons
+      - name: Build Flutter Web
+        run: flutter build web --base-href="/Metreyar_flutter_web/" --dart-define=BACKEND_URL=https://api.homkar.ir
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
+      - name: Deploy to GitHub Pages 🚀
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          name: flutter-web-build
-          path: build/web
-- name: 🏗️ Build Web App
-  run: flutter build web --base-href="/Metreyar_flutter_web/" --dart-define=BACKEND_URL=https://metreyar-api.onrender.com
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: build/web
+          publish_branch: gh-pages
