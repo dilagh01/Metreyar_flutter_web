@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(title: const Text("Metreyar Front")),
         body: Center(
           child: FutureBuilder<String>(
-            future: ApiService.ping(),
+            future: ApiService.fetchHello(), // این خط اصلاح شده
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const CircularProgressIndicator();
