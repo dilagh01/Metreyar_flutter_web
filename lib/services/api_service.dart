@@ -1,25 +1,16 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import '../constants.dart';
 
 class ApiService {
-  Future<List<dynamic>> fetchItems() async {
-    final response = await http.get(Uri.parse('$backendUrl/api/items'));
+  static const String baseUrl = 'https://metreyar.onrender.com';
 
+  static Future<String> fetchHello() async {
+    final response = await http.get(Uri.parse('$baseUrl/'));
     if (response.statusCode == 200) {
-      return jsonDecode(response.body);
+      final data = jsonDecode(response.body);
+      return data['message'] ?? 'No message';
     } else {
-      throw Exception('Failed to fetch items');
+      throw Exception('Failed to load message');
     }
-  }
-
-  Future<bool> sendItem(Map<String, dynamic> data) async {
-    final response = await http.post(
-      Uri.parse('$backendUrl/api/items'),
-      headers: {'Content-Type': 'application/json'},
-      body: jsonEncode(data),
-    );
-
-    return response.statusCode == 200;
   }
 }
