@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ApiService {
-  static const String baseUrl = 'https://metreyar.onrender.com';
+  static const String baseUrl = 'https://api.homkar.ir';
 
   static Future<String> fetchHello() async {
     final response = await http.get(Uri.parse('$baseUrl/'));
