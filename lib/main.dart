@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'services/api_service.dart'; // مطمئن شو مسیر درست باشه
+import 'services/api_service.dart'; // مطمئن باش فایل در مسیر درست قرار دارد
 
 void main() {
   runApp(const MyApp());
@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'Metreyar Web',
+      debugShowCheckedModeBanner: false,
       home: HelloScreen(),
     );
   }
@@ -24,7 +25,7 @@ class HelloScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('🧱 Metreyar Web Example'),
+        title: const Text('🧱 Metreyar Web'),
       ),
       body: Center(
         child: FutureBuilder<String>(
