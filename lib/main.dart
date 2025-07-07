@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 // فرض بر این است که فایل api_service.dart شما دارای متد fetchHello است.
-import 'api_service.dart';
-
+import 'services/api_service.dart';
 void main() {
   runApp(const MyApp());
 }
