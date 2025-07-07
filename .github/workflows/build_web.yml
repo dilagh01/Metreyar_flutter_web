@@ -21,9 +21,8 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Build Flutter Web
-        run: flutter build web --base-href="/Metreyar_flutter_web/" --dart-define=BACKEND_URL=https://api.homkar.ir
-
+- name: Build Flutter Web
+        run: flutter build web --web-renderer html --base-href="/Metreyar_flutter_web/" --dart-define=BACKEND_URL=https://api.homkar.ir
       - name: Deploy to GitHub Pages 🚀
         uses: peaceiris/actions-gh-pages@v3
         with:
