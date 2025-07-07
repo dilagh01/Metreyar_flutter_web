@@ -1,8 +1,9 @@
-name: Deploy Flutter Web to GitHub Pages
+name: Build and Deploy Flutter Web to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches: [ main ]
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -12,28 +13,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout source
-        uses: actions/checkout@v3
+      - name: ⬇️ Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Set up Flutter
+      - name: 💾 Setup Flutter SDK
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.22.0'  # یا هر نسخه‌ای که پروژه‌ات نیاز دارد
+          flutter-version: '3.22.1'
 
-      - name: Install dependencies
+      - name: 📦 Install Dependencies
         run: flutter pub get
 
-      - name: Build Flutter Web
-        run: flutter build web --release
+      - name: 🏗️ Build Flutter Web App
+        run: flutter build web --base-href="/Metreyar_flutter_web/" --dart-define=BACKEND_URL=https://api.homkar.ir
 
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: flutter-web-build
-          path: build/web
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+      - name: 🚀 Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: build/web
+          publish_dir: ./build/web
+          publish_branch: gh-pages
+
