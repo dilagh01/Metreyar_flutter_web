@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 
 class ApiService {
   // مقدار BACKEND_URL از dart-define گرفته می‌شود
-  static const String baseUrl = String.fromEnvironment('BACKEND_URL', defaultValue: 'https://api.homkar.ir');
+  static const String baseUrl = String.fromEnvironment('BACKEND_URL', defaultValue: 'https://metreyar.onrender.com');
 
   /// GET به مسیر `/hello`
   static Future<String> fetchHello() async {
