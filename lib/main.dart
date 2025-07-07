@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-// فرض بر این است که فایل api_service.dart شما دارای متد fetchHello است.
-import 'services/api_service.dart';
+import 'services/api_service.dart'; // مطمئن شو مسیر درست باشه
+
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      title: 'Metreyar Web',
       home: HelloScreen(),
     );
   }
@@ -22,7 +23,9 @@ class HelloScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Metreyar")),
+      appBar: AppBar(
+        title: const Text('🧱 Metreyar Web Example'),
+      ),
       body: Center(
         child: FutureBuilder<String>(
           future: ApiService.fetchHello(),
@@ -30,9 +33,9 @@ class HelloScreen extends StatelessWidget {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const CircularProgressIndicator();
             } else if (snapshot.hasError) {
-              return Text("❌ Error: ${snapshot.error}");
+              return Text('❌ Error: ${snapshot.error}');
             } else {
-              return Text(snapshot.data ?? "No response");
+              return Text('✅ Response: ${snapshot.data}');
             }
           },
         ),
