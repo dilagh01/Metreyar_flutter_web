@@ -1,1 +1,0 @@
-flutter build web --base-href="/Metreyar_flutter_web/" --no-tree-shake-icons
