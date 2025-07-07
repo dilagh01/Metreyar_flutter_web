@@ -25,9 +25,9 @@ jobs:
         run: flutter pub get
 
       - name: 🏗️ Build Flutter Web App
-        run: flutter build web --base-href="/Metreyar_flutter_web/"
+        run: flutter build web --base-href="/Metreyar_flutter_web/" --dart-define=BACKEND_URL=https://api.homkar.ir
 
-      - name: 📤 Upload build artifacts
+      - name: 📤 Upload Build Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: web-build
