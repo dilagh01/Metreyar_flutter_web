@@ -15,19 +15,22 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="favicon.png" />
 
+    <!-- ✅ مهم برای GitHub Pages -->
+    <base href="$FLUTTER_BASE_HREF" />
+
     <title>Metreyar</title>
     <link rel="manifest" href="manifest.json" />
-
-    <!-- 📌 مهم: این خط برای GitHub Pages ضروری است -->
-    <base href="$FLUTTER_BASE_HREF" />
   </head>
   <body>
+    <!-- ✅ بهبود عملکرد لمسی در موبایل -->
     <script>
       window.addEventListener('touchstart', function () {}, { passive: true });
     </script>
+
+    <!-- Flutter Loader -->
     <script src="flutter.js" defer></script>
     <script>
-      window.addEventListener("load", function (ev) {
+      window.addEventListener("load", function () {
         _flutter.loader.loadEntrypoint({
           serviceWorker: {
             serviceWorkerVersion: "v1",
