@@ -20,3 +20,7 @@
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: build/web
+- name: ⬇️ Checkout repository (with submodules)
+  uses: actions/checkout@v4
+  with:
+    submodules: true
