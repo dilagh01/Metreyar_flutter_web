@@ -19711,7 +19711,7 @@ throw A.c(A.ajQ("Invalid "+a+": "+s.a,s.b,J.a6A(s)))}else if(t.Bj.b(q)){r=q
 throw A.c(A.bH("Invalid "+a+' "'+b+'": '+J.aeY(r),J.a6A(r),J.aeZ(r)))}else throw p}},
 Ln(){var s=0,r=A.U(t.N),q,p=2,o,n,m,l,k,j,i,h
 var $async$Ln=A.V(function(a,b){if(a===1){o=b
-s=p}while(true)switch(s){case 0:i=A.fz("https://api.homkar.ir/hello")
+s=p}while(true)switch(s){case 0:i=A.fz("https://metreyar.onrender.com/hello")
 p=4
 s=7
 return A.Y(A.ao7(i),$async$Ln)
