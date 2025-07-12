@@ -5,24 +5,19 @@
     <meta content="IE=Edge" http-equiv="X-UA-Compatible" />
     <meta name="description" content="Metreyar Flutter Web App" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- iOS meta tags & icons -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta name="apple-mobile-web-app-title" content="Metreyar" />
     <link rel="apple-touch-icon" href="icons/Icon-192.png" />
-
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="favicon.png" />
-
-    <!-- ✅ مهم برای GitHub Pages -->
-    <base href="$FLUTTER_BASE_HREF" />
+    
+    <!-- مهم برای GitHub Pages -->
+    <base href="/Metreyar_flutter_web/" />
 
     <title>Metreyar</title>
     <link rel="manifest" href="manifest.json" />
   </head>
   <body>
-    <!-- ✅ بهبود عملکرد لمسی در موبایل -->
     <script>
       window.addEventListener('touchstart', function () {}, { passive: true });
     </script>
@@ -33,13 +28,13 @@
       window.addEventListener("load", function () {
         _flutter.loader.loadEntrypoint({
           serviceWorker: {
-            serviceWorkerVersion: "v1",
+            serviceWorkerVersion: "v1"
           },
           onEntrypointLoaded: function (engineInitializer) {
             engineInitializer.initializeEngine().then(function (appRunner) {
               appRunner.runApp();
             });
-          },
+          }
         });
       });
     </script>
