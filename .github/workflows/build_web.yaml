@@ -27,7 +27,7 @@ jobs:
         run: flutter pub get
 
       - name: 🏗️ Build Flutter Web App
-        run: flutter build web --base-href="/Metreyar_flutter_web/" --dart-define=BACKEND_URL=https://api.homkar.ir
+        run: flutter build web --base-href="/Metreyar_flutter_web/" --dart-define=BACKEND_URL=https://metreyar.onrender.com
 
       - name: 📂 Show build output (debug)
         run: ls -R build/web
