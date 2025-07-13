@@ -34,7 +34,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
   String errorMessage = '';
 
   // آدرس بک‌اند (از render)
-  final String baseUrl = https://metreyar.onrender.com'';
+  final String baseUrl = 'https://metreyar.onrender.com';
 
   @override
   void initState() {
@@ -47,7 +47,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
       final response = await http.get(Uri.parse('$baseUrl/projects'));
       if (response.statusCode == 200) {
         setState(() {
-          _projects = jsonDecode(utf8.decode(response.bodyBytes)); // برای رفع مشکل یونیکد
+          _projects = jsonDecode(utf8.decode(response.bodyBytes));
           _loading = false;
         });
       } else {
@@ -81,4 +81,26 @@ class _ProjectsPageState extends State<ProjectsPage> {
                   child: Text(
                     errorMessage,
                     textDirection: TextDirection.rtl,
-                    style
+                    style: TextStyle(fontFamily: 'Vazirmatn'),
+                  ),
+                )
+              : ListView.builder(
+                  itemCount: _projects.length,
+                  itemBuilder: (context, index) {
+                    final item = _projects[index];
+                    return ListTile(
+                      title: Text(
+                        item['name'],
+                        textDirection: TextDirection.rtl,
+                        style: const TextStyle(fontFamily: 'Vazirmatn'),
+                      ),
+                      subtitle: Text(
+                        'ID: ${item['id']}',
+                        textDirection: TextDirection.rtl,
+                      ),
+                    );
+                  },
+                ),
+    );
+  }
+}
