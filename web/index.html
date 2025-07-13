@@ -10,26 +10,33 @@
     <meta name="apple-mobile-web-app-title" content="Metreyar" />
     <link rel="apple-touch-icon" href="icons/Icon-192.png" />
     <link rel="icon" type="image/png" href="favicon.png" />
-
-    <!-- فونت فارسی Vazirmatn از CDN -->
+    
+    <!-- ✅ فونت فارسی Vazirmatn از گوگل -->
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap" rel="stylesheet" />
+
+    <!-- ✅ بسیار مهم برای GitHub Pages -->
+    <base href="$FLUTTER_BASE_HREF" />
+
     <style>
       body {
         font-family: 'Vazirmatn', sans-serif;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        background-color: #ffffff;
       }
     </style>
 
-    <!-- اصلاح base href برای GitHub Pages -->
-<base href="$FLUTTER_BASE_HREF" />
     <title>Metreyar</title>
     <link rel="manifest" href="manifest.json" />
   </head>
+
   <body>
     <script>
       window.addEventListener('touchstart', function () {}, { passive: true });
     </script>
 
-    <!-- Flutter Loader -->
+    <!-- ✅ بارگذار Flutter -->
     <script src="flutter.js" defer></script>
     <script>
       window.addEventListener("load", function () {
