@@ -23,3 +23,8 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+flutter:
+  fonts:
+    - family: Vazirmatn
+      fonts:
+        - asset: fonts/Vazirmatn-Regular.ttf
