@@ -23,7 +23,7 @@ jobs:
         run: flutter pub get
 
       - name: 🏗️ Build Flutter Web App
-        run: flutter build web --release --dart-define=BACKEND_URL=https://metreyar.onrender.com
+        run: flutter build web --release --base-href="/Metreyar_flutter_web/" --dart-define=BACKEND_URL=https://metreyar.onrender.com
 
       - name: 🚀 Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
