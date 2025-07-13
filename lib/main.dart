@@ -14,7 +14,8 @@ class MetreyarApp extends StatelessWidget {
     return MaterialApp(
       title: 'Metreyar Web',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.indigo,
+        fontFamily: 'Vazirmatn',
       ),
       home: const ProjectsPage(),
     );
@@ -33,8 +34,11 @@ class _ProjectsPageState extends State<ProjectsPage> {
   bool _loading = true;
   String errorMessage = '';
 
-  // آدرس بک‌اند (از render)
-  final String baseUrl = 'https://metreyar.onrender.com';
+  // آدرس بک‌اند از طریق dart-define (در زمان build مشخص می‌شود)
+  static const String baseUrl = String.fromEnvironment(
+    'BACKEND_URL',
+    defaultValue: 'http://localhost:8000',
+  );
 
   @override
   void initState() {
@@ -47,7 +51,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
       final response = await http.get(Uri.parse('$baseUrl/projects'));
       if (response.statusCode == 200) {
         setState(() {
-          _projects = jsonDecode(utf8.decode(response.bodyBytes));
+          _projects = jsonDecode(utf8.decode(response.bodyBytes)); // برای رفع مشکل یونیکد
           _loading = false;
         });
       } else {
@@ -68,39 +72,29 @@ class _ProjectsPageState extends State<ProjectsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'پروژه‌های متره‌یار',
-          textDirection: TextDirection.rtl,
-          style: TextStyle(fontFamily: 'Vazirmatn'),
-        ),
+        title: const Text('پروژه‌های متره‌یار', textDirection: TextDirection.rtl),
       ),
       body: _loading
           ? const Center(child: CircularProgressIndicator())
           : errorMessage.isNotEmpty
               ? Center(
-                  child: Text(
-                    errorMessage,
-                    textDirection: TextDirection.rtl,
-                    style: TextStyle(fontFamily: 'Vazirmatn'),
-                  ),
+                  child: Text(errorMessage, textDirection: TextDirection.rtl),
                 )
-              : ListView.builder(
-                  itemCount: _projects.length,
-                  itemBuilder: (context, index) {
-                    final item = _projects[index];
-                    return ListTile(
-                      title: Text(
-                        item['name'],
-                        textDirection: TextDirection.rtl,
-                        style: const TextStyle(fontFamily: 'Vazirmatn'),
-                      ),
-                      subtitle: Text(
-                        'ID: ${item['id']}',
-                        textDirection: TextDirection.rtl,
-                      ),
-                    );
-                  },
-                ),
+              : _projects.isEmpty
+                  ? const Center(
+                      child: Text('هیچ پروژه‌ای یافت نشد.', textDirection: TextDirection.rtl),
+                    )
+                  : ListView.builder(
+                      itemCount: _projects.length,
+                      itemBuilder: (context, index) {
+                        return ListTile(
+                          title: Text(
+                            _projects[index]['name'],
+                            textDirection: TextDirection.rtl,
+                          ),
+                        );
+                      },
+                    ),
     );
   }
 }

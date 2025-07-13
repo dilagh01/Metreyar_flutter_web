@@ -20,6 +20,10 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - assets/ # (اختیاری – اگر از فایل یا عکس استفاده می‌کنی)
+
   fonts:
     - family: Vazirmatn
       fonts:
