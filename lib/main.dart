@@ -1,4 +1,4 @@
-kimport 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -28,14 +28,19 @@ class MyHomePage extends StatelessWidget {
 
   Future<String> fetchMessage() async {
     final baseUrl = const String.fromEnvironment('BACKEND_URL');
+    
+    if (baseUrl.isEmpty) {
+      throw Exception('Environment variable BACKEND_URL not found.');
+    }
+
     final uri = Uri.parse(baseUrl);
     final response = await http.get(uri);
 
     if (response.statusCode == 200) {
       final decoded = jsonDecode(response.body);
-      return decoded['message'] ?? 'No message';
+      return decoded['message'] ?? 'پیام خالی است';
     } else {
-      throw Exception('Failed to load message');
+      throw Exception('خطا در دریافت اطلاعات از سرور');
     }
   }
 
@@ -49,7 +54,12 @@ class MyHomePage extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
-            return Center(child: Text('خطا: ${snapshot.error}'));
+            return Center(
+              child: Text(
+                'خطا: ${snapshot.error}',
+                style: const TextStyle(color: Colors.red),
+              ),
+            );
           } else {
             return Center(
               child: Text(
