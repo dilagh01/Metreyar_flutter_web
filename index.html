@@ -1,21 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta content="IE=Edge" http-equiv="X-UA-Compatible" />
-    <meta name="description" content="Metreyar Flutter Web App" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>Metreyar</title>
-<base href="/">
-    <link rel="manifest" href="manifest.json" />
+    <meta name="description" content="Metreyar Flutter Web App" />
     <meta name="theme-color" content="#000000" />
+    <title>Metreyar</title>
+
+    <!-- Base href برای GitHub Pages -->
+<base href="/">
+
+    <!-- PWA manifest -->
+    <link rel="manifest" href="manifest.json" />
+
+    <!-- آیکون‌ها -->
     <link rel="icon" type="image/png" href="icons/Icon-192.png" />
-  </head>
-  <body>
+
+    <!-- Flutter Web App JS -->
     <script src="flutter.js" defer></script>
+  </head>
+
+  <body>
     <script>
-      window.addEventListener('load', function (ev) {
+      window.addEventListener('load', function () {
         _flutter.loader.loadEntrypoint({
           serviceWorker: {
             serviceWorkerVersion: 'v1',
