@@ -28,8 +28,7 @@ jobs:
       - name: 🏗️ Build Flutter Web App
         run: flutter build web --release --base-href="/" --dart-define=BACKEND_URL=https://metreyar.onrender.com
 
-      - name: 📄 Copy CNAME
-        run: echo "homkar.ir" > build/web/CNAME
+      # ❌ مرحله‌ای که CNAME ایجاد می‌کرد حذف شده
 
       - name: 🚀 Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
