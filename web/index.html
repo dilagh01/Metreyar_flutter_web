@@ -4,44 +4,37 @@
     <meta charset="UTF-8" />
     <meta content="IE=Edge" http-equiv="X-UA-Compatible" />
     <meta name="description" content="Metreyar Flutter Web App" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Metreyar</title>
 
-    <!-- ✅ Base href برای دامنه اختصاصی -->
-    <base href="/" />
+    <!-- 🔥 ضروری برای تنظیم base-href در زمان build -->
+    <base href="$FLUTTER_BASE_HREF" />
 
-    <!-- ✅ آیکون‌های PWA -->
+    <!-- مانيفست و تم -->
     <link rel="manifest" href="manifest.json" />
-    <link rel="apple-touch-icon" href="icons/Icon-192.png" />
     <meta name="theme-color" content="#000000" />
 
-    <!-- ✅ استایل پیش‌فرض Flutter -->
+    <!-- آیکون دلخواه -->
+    <link rel="icon" type="image/png" href="icons/Icon-192.png" />
+
+    <!-- استایل‌ها (در صورت نیاز) -->
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <!-- ✅ نمایش لودینگ قبل از بارگذاری -->
-    <script>
-      window.addEventListener('load', function () {
-        const loader = document.getElementById('loading');
-        if (loader) loader.remove();
-      });
-    </script>
-    <div id="loading">
-      Loading Metreyar...
-    </div>
-
+    <!-- این المان ریشه فلاتر است -->
     <script src="flutter.js" defer></script>
     <script>
-      window.addEventListener("load", function (ev) {
+      window.addEventListener('load', function (ev) {
         _flutter.loader.loadEntrypoint({
           serviceWorker: {
             serviceWorkerVersion: 'v1',
-          }
-        }).then(function(engineInitializer) {
-          return engineInitializer.initializeEngine();
-        }).then(function(appRunner) {
-          return appRunner.runApp();
+          },
+          onEntrypointLoaded: function (engineInitializer) {
+            engineInitializer.initializeEngine().then(function (appRunner) {
+              appRunner.runApp();
+            });
+          },
         });
       });
     </script>
