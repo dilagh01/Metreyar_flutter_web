@@ -1,27 +1,40 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible" />
+    <meta name="description" content="Metreyar Flutter Web App" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Metreyar</title>
-    <base href="/Metreyar_flutter_web/">
-    <meta name="description" content="Metreyar Flutter Web App">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="manifest" href="manifest.json">
-    <!-- styles & scripts... -->
+
+    <!-- 🔥 ضروری برای تنظیم base-href در زمان build -->
+    <base href="/Metreyar_flutter_web/" />
+
+    <!-- مانيفست و تم -->
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#000000" />
+
+    <!-- آیکون دلخواه -->
+    <link rel="icon" type="image/png" href="icons/Icon-192.png" />
+
+    <!-- استایل‌ها (در صورت نیاز) -->
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <!-- این المان ریشه فلاتر است -->
     <script src="flutter.js" defer></script>
     <script>
-      window.addEventListener('load', function(ev) {
+      window.addEventListener('load', function (ev) {
         _flutter.loader.loadEntrypoint({
           serviceWorker: {
-            serviceWorkerVersion: serviceWorkerVersion,
+            serviceWorkerVersion: 'v1',
           },
-          onEntrypointLoaded: function(engineInitializer) {
-            engineInitializer.initializeEngine().then(function(appRunner) {
+          onEntrypointLoaded: function (engineInitializer) {
+            engineInitializer.initializeEngine().then(function (appRunner) {
               appRunner.runApp();
             });
-          }
+          },
         });
       });
     </script>
