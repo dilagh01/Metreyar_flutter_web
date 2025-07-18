@@ -1,11 +1,12 @@
 {
-  "name": "Metreyar",
+  "name": "Metreyar Web",
   "short_name": "Metreyar",
-  "start_url": ".",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",
-  "orientation": "portrait-primary",
+  "orientation": "portrait",
+  "description": "Metreyar Flutter Web App",
   "icons": [
     {
       "src": "icons/Icon-192.png",
