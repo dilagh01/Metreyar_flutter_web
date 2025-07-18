@@ -26,7 +26,7 @@ jobs:
         run: flutter clean && flutter pub get
 
       - name: 🏗️ Build Flutter Web App
-        run: flutter build web --release --base-href="/" --dart-define=BACKEND_URL=https://metreyar.onrender.com
+        run: flutter build web --release --base-href="/Metreyar_flutter_web/" --dart-define=BACKEND_URL=https://metreyar.onrender.com
 
       # ❌ مرحله‌ای که CNAME ایجاد می‌کرد حذف شده
 
