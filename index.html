@@ -1,27 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible" />
     <meta name="description" content="Metreyar Flutter Web App" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Metreyar</title>
 
-    <!-- Base href برای GitHub Pages -->
-<base href="/">
+    <!-- 📍 این خط باید دقیقاً همین باشد تا هنگام build جایگزین شود -->
+    <base href="/" />
 
-    <!-- PWA manifest -->
+    <!-- 📱 Progressive Web App -->
     <link rel="manifest" href="manifest.json" />
-
-    <!-- آیکون‌ها -->
+    <meta name="theme-color" content="#000000" />
     <link rel="icon" type="image/png" href="icons/Icon-192.png" />
 
-    <!-- Flutter Web App JS -->
-    <script src="flutter.js" defer></script>
+    <!-- استایل (در صورت نیاز) -->
+    <link rel="stylesheet" href="styles.css" />
   </head>
-
   <body>
+    <script src="flutter.js" defer></script>
     <script>
       window.addEventListener('load', function () {
         _flutter.loader.loadEntrypoint({
