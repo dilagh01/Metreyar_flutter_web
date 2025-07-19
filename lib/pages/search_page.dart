@@ -13,6 +13,7 @@ class _SearchPageState extends State<SearchPage> {
   String _query = '';
 
   final List<_SearchItem> items = [
+    _SearchItem(title: 'خانه', route: '/', icon: Icons.home), // صفحه خانه
     _SearchItem(title: 'متره', route: '/measure', icon: Icons.list_alt),
     _SearchItem(title: 'برآورد', route: '/estimation', icon: Icons.calculate),
     _SearchItem(title: 'تحلیل', route: '/analysis', icon: Icons.analytics),
