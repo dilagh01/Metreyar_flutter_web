@@ -1,87 +1,72 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
-class SearchPage extends StatefulWidget {
+class SearchPage extends StatelessWidget {
   const SearchPage({super.key});
-
-  @override
-  State<SearchPage> createState() => _SearchPageState();
-}
-
-class _SearchPageState extends State<SearchPage> {
-  final TextEditingController _controller = TextEditingController();
-  List<String> allItems = [
-    'متره پی‌ریزی',
-    'برآورد دیوارچینی',
-    'تحلیل مصالح',
-    'اندازه‌گیری سقف',
-    'تشخیص اسناد پروژه',
-    'مدیریت مصالح',
-    'مطالعه ضوابط آیین‌نامه‌ای',
-    'هزینه‌گذاری نقاشی',
-    'برآورد تاسیسات',
-  ];
-
-  List<String> filteredItems = [];
-
-  @override
-  void initState() {
-    super.initState();
-    filteredItems = allItems;
-    _controller.addListener(_filterResults);
-  }
-
-  void _filterResults() {
-    final query = _controller.text.toLowerCase();
-    setState(() {
-      filteredItems = allItems
-          .where((item) => item.toLowerCase().contains(query))
-          .toList();
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('جستجو')),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            TextField(
-              controller: _controller,
-              decoration: InputDecoration(
-                hintText: 'جستجو...',
-                prefixIcon: const Icon(Icons.search),
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
-              ),
+      body: ListView(
+        padding: const EdgeInsets.all(16),
+        children: [
+          const TextField(
+            decoration: InputDecoration(
+              prefixIcon: Icon(Icons.search),
+              hintText: 'جستجو...',
+              border: OutlineInputBorder(),
             ),
-            const SizedBox(height: 16),
-            Expanded(
-              child: filteredItems.isEmpty
-                  ? const Center(child: Text('نتیجه‌ای یافت نشد.'))
-                  : ListView.separated(
-                      itemCount: filteredItems.length,
-                      separatorBuilder: (_, __) => const Divider(),
-                      itemBuilder: (context, index) {
-                        return ListTile(
-                          title: Text(filteredItems[index]),
-                          leading: const Icon(Icons.article_outlined),
-                          onTap: () {
-                            // TODO: Implement navigation to selected item
-                          },
-                        );
-                      },
-                    ),
-            ),
-          ],
-        ),
+          ),
+          const SizedBox(height: 20),
+
+          ListTile(
+            leading: const Icon(Icons.list_alt),
+            title: const Text('متره پی‌ریزی'),
+            onTap: () => context.go('/measure'),
+          ),
+          ListTile(
+            leading: const Icon(Icons.calculate),
+            title: const Text('برآورد دیوارچینی'),
+            onTap: () => context.go('/estimation'),
+          ),
+          ListTile(
+            leading: const Icon(Icons.analytics),
+            title: const Text('تحلیل مصالح'),
+            onTap: () => context.go('/analysis'),
+          ),
+          ListTile(
+            leading: const Icon(Icons.straighten),
+            title: const Text('اندازه‌گیری سقف'),
+            onTap: () => context.go('/measure'),
+          ),
+          ListTile(
+            leading: const Icon(Icons.camera_alt),
+            title: const Text('اندازه‌گیری با دوربین'),
+            onTap: () => context.go('/camera'),
+          ),
+          ListTile(
+            leading: const Icon(Icons.description),
+            title: const Text('تشخیص اسناد پروژه'),
+            onTap: () => context.go('/documents'),
+          ),
+          ListTile(
+            leading: const Icon(Icons.business),
+            title: const Text('مدیریت مصالح'),
+            onTap: () => context.go('/site'),
+          ),
+          ListTile(
+            leading: const Icon(Icons.menu_book),
+            title: const Text('مطالعه ضوابط آیین‌نامه‌ای'),
+            onTap: () => context.go('/study'),
+          ),
+          ListTile(
+            leading: const Icon(Icons.brush),
+            title: const Text('هزینه‌گذاری نقاشی'),
+            onTap: () => context.go('/analysis'),
+          ),
+        ],
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
   }
 }
