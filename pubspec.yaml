@@ -31,3 +31,8 @@ flutter:
     - assets/
     - icons/
     - uploads/
+dependencies:
+  flutter:
+    sdk: flutter
+  google_ml_kit: ^0.6.0
+  image_picker: ^0.8.5+3 # برای انتخاب تصویر از گالری یا دوربین
