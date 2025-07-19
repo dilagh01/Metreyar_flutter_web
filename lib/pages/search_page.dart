@@ -22,23 +22,18 @@ class SearchPage extends StatelessWidget {
 
           ListTile(
             leading: const Icon(Icons.list_alt),
-            title: const Text('متره پی‌ریزی'),
+            title: const Text('متره'),
             onTap: () => context.go('/measure'),
           ),
           ListTile(
             leading: const Icon(Icons.calculate),
-            title: const Text('برآورد دیوارچینی'),
+            title: const Text('برآورد'),
             onTap: () => context.go('/estimation'),
           ),
           ListTile(
             leading: const Icon(Icons.analytics),
-            title: const Text('تحلیل مصالح'),
+            title: const Text('تحلیل'),
             onTap: () => context.go('/analysis'),
-          ),
-          ListTile(
-            leading: const Icon(Icons.straighten),
-            title: const Text('اندازه‌گیری سقف'),
-            onTap: () => context.go('/measure'),
           ),
           ListTile(
             leading: const Icon(Icons.camera_alt),
@@ -52,18 +47,13 @@ class SearchPage extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(Icons.business),
-            title: const Text('مدیریت مصالح'),
+            title: const Text('مدیریت کارگاه'),
             onTap: () => context.go('/site'),
           ),
           ListTile(
             leading: const Icon(Icons.menu_book),
-            title: const Text('مطالعه ضوابط آیین‌نامه‌ای'),
+            title: const Text('مطالعه'),
             onTap: () => context.go('/study'),
-          ),
-          ListTile(
-            leading: const Icon(Icons.brush),
-            title: const Text('هزینه‌گذاری نقاشی'),
-            onTap: () => context.go('/analysis'),
           ),
         ],
       ),
