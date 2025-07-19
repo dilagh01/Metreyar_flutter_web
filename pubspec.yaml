@@ -13,6 +13,8 @@ dependencies:
   http: ^0.13.6
   go_router: ^13.2.2
   cupertino_icons: ^1.0.2
+  google_ml_kit: ^0.6.0 # پکیج Google ML Kit برای تشخیص متن
+  image_picker: ^0.8.5+3 # پکیج برای انتخاب تصویر از گالری یا دوربین
 
 dev_dependencies:
   flutter_test:
@@ -31,8 +33,3 @@ flutter:
     - assets/
     - icons/
     - uploads/
-dependencies:
-  flutter:
-    sdk: flutter
-  google_ml_kit: ^0.6.0
-  image_picker: ^0.8.5+3 # برای انتخاب تصویر از گالری یا دوربین
