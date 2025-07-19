@@ -22,13 +22,14 @@ jobs:
       - name: 📦 Install Dependencies
         run: flutter pub get
 
+      - name: 📈 Upgrade Dependencies
+        run: flutter pub upgrade  # این خط را برای به‌روزرسانی وابستگی‌ها اضافه کنید.
+
       - name: 🧹 Clean and Rebuild
         run: flutter clean && flutter pub get
 
       - name: 🏗️ Build Flutter Web App
         run: flutter build web --release --base-href="/Metreyar_flutter_web/" --dart-define=BACKEND_URL=https://metreyar.onrender.com
-
-      # ❌ مرحله‌ای که CNAME ایجاد می‌کرد حذف شده
 
       - name: 🚀 Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
