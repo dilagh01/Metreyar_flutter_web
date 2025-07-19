@@ -1,75 +1,67 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:go_router/go_router.dart';
+
+// صفحات اصلی پروژه (فعلاً اسکلت‌بندی)
+import 'pages/measurement_page.dart';
+import 'pages/estimation_page.dart';
+import 'pages/analysis_page.dart';
+import 'pages/camera_measure_page.dart';
+import 'pages/document_recognition_page.dart';
+import 'pages/site_management_page.dart';
+import 'pages/study_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MetreyarApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MetreyarApp extends StatelessWidget {
+  const MetreyarApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Metreyar Test',
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
+      title: 'Metreyar',
       theme: ThemeData(
         fontFamily: 'Vazirmatn',
-        primarySwatch: Colors.blue,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        useMaterial3: true,
       ),
-      home: const MyHomePage(),
+      routerConfig: _router,
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
-
-  Future<String> fetchMessage() async {
-    final baseUrl = const String.fromEnvironment('BACKEND_URL');
-    
-    if (baseUrl.isEmpty) {
-      throw Exception('Environment variable BACKEND_URL not found.');
-    }
-
-    final uri = Uri.parse(baseUrl);
-    final response = await http.get(uri);
-
-    if (response.statusCode == 200) {
-      final decoded = jsonDecode(response.body);
-      return decoded['message'] ?? 'پیام خالی است';
-    } else {
-      throw Exception('خطا در دریافت اطلاعات از سرور');
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('پیام از سرور')),
-      body: FutureBuilder<String>(
-        future: fetchMessage(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            return Center(
-              child: Text(
-                'خطا: ${snapshot.error}',
-                style: const TextStyle(color: Colors.red),
-              ),
-            );
-          } else {
-            return Center(
-              child: Text(
-                snapshot.data ?? 'پیامی دریافت نشد.',
-                style: const TextStyle(fontSize: 20),
-              ),
-            );
-          }
-        },
-      ),
-    );
-  }
-}
+final GoRouter _router = GoRouter(
+  initialLocation: '/measurement',
+  routes: [
+    GoRoute(
+      path: '/measurement',
+      builder: (context, state) => const MeasurementPage(),
+    ),
+    GoRoute(
+      path: '/estimation',
+      builder: (context, state) => const EstimationPage(),
+    ),
+    GoRoute(
+      path: '/analysis',
+      builder: (context, state) => const AnalysisPage(),
+    ),
+    GoRoute(
+      path: '/camera',
+      builder: (context, state) => const CameraMeasurePage(),
+    ),
+    GoRoute(
+      path: '/documents',
+      builder: (context, state) => const DocumentRecognitionPage(),
+    ),
+    GoRoute(
+      path: '/site-management',
+      builder: (context, state) => const SiteManagementPage(),
+    ),
+    GoRoute(
+      path: '/study',
+      builder: (context, state) => const StudyPage(),
+    ),
+  ],
+);
