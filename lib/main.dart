@@ -3,14 +3,14 @@ import 'package:go_router/go_router.dart';
 
 // صفحات پروژه
 import 'pages/search_page.dart';
-import 'pages/measure_page.dart';
+import 'pages/measurement_page.dart';
 import 'pages/estimation_page.dart';
 import 'pages/analysis_page.dart';
 import 'pages/camera_measure_page.dart';
 import 'pages/document_recognition_page.dart';
 import 'pages/site_management_page.dart';
 import 'pages/study_page.dart';
-import 'pages/home_page.dart'; // هنوز نگه‌داشته شده
+import 'pages/home_page.dart'; // در صورت نیاز به صفحه خانه جداگانه
 
 void main() {
   runApp(const MyApp());
@@ -25,11 +25,11 @@ class MyApp extends StatelessWidget {
       routes: [
         GoRoute(
           path: '/',
-          builder: (context, state) => const SearchPage(), // صفحه جستجو = خانه
+          builder: (context, state) => const SearchPage(), // صفحه اصلی
         ),
         GoRoute(
           path: '/measure',
-          builder: (context, state) => const MeasurePage(),
+          builder: (context, state) => const MeasurementPage(),
         ),
         GoRoute(
           path: '/estimation',
@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
         ),
         GoRoute(
           path: '/home',
-          builder: (context, state) => const HomePage(), // اگر خواستی صفحه‌ای به نام خانه هم داشته باشی
+          builder: (context, state) => const HomePage(),
         ),
       ],
     );
